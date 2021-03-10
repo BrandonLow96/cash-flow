@@ -5,6 +5,8 @@ from openpyxl import load_workbook
 from openpyxl.formula.translate import Translator
 
 # Define functions
+
+
 def update_col(sheet, col_src, col_dest, cols, cols_limit):
     if cols == cols_limit:
         sheet.range(col_src + ":" + col_src).delete(shift="left")
@@ -45,7 +47,7 @@ hist_data_start = datetime(2016, 12, 31)
 
 forecast_date = datetime(2017, 12, 18)
 forecast_start = datetime(2018, 12, 31)
-forecast_periods = 4
+forecast_periods = 4  # minimum of 2
 use_ciq_forecast = "Yes"
 
 r_override = None
@@ -64,9 +66,9 @@ comps = ["IQ22615883", "IQ7827924", "IQ24947391", "IQ7685249", "IQ217503",
          "IQ117027181", "IQ882187", "IQ216463", "IQ879091", "IQ8690249"]
 
 # Structural parameters
-hist_periods = 3
-forecast_periods_proj = 4
-forecast_periods_extr = 4  # excluding terminal period
+hist_periods = 3  # minimum of 2
+forecast_periods_proj = 4  # minimum of 3
+forecast_periods_extr = 4  # minimum of 1, excludes terminal period
 
 
 # Load workbook
@@ -118,8 +120,8 @@ for i in range(0, len(comps)):
 update_comps(beta_sht, 21, len(comps))
 beta_sht.range(str(21 + len(comps)) + ":" + str(21 + len(comps))).api.Delete()
 
+update_comps(beta_sht, 97 + 2 * (len(comps) - 1), len(comps))
 update_comps(beta_sht, 72 + 2 * (len(comps) - 1), len(comps))
-update_comps(beta_sht, 97 + 3 * (len(comps) - 1), len(comps))
 update_comps(beta_sht, 104 + 4 * (len(comps) - 1), len(comps))
 
 update_comps(comp_sht, 39, len(comps))
@@ -127,6 +129,8 @@ update_comps(comp_sht, 39, len(comps))
 for i in range(0, len(comps)):
     row_num = 39 + i
     comp_sht.range("C" + str(row_num)).value = comps[i]
+
+comp_sht.range(str(39 + len(comps)) + ":" + str(39 + len(comps))).api.Delete()
 
 
 # Export and save
