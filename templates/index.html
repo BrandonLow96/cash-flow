@@ -28,14 +28,52 @@
                         <span class="block-subtitle">Specify model inputs and assumptions</span>
                     </div>
                     <div class="block">
-                        <span class="section-title">Company information</span>
-                        <div class="input-field">
-                            <span class="field-label">Project name</span>
-                            <input class="text-field" />
+                        <div class="input-section">
+                            <span class="section-title">Company information</span>
+                            <div class="input-field">
+                                <span class="field-label">Project name</span>
+                                <input type="text" class="text-field-lg" placeholder="e.g. Project Alpha" />
+                            </div>
+                            <div class="input-field">
+                                <span class="field-label">Company name</span>
+                                <input type="text" class="text-field-lg" placeholder="e.g. FTI Consulting" />
+                            </div>
+                            <div class="input-field">
+                                <span class="field-label">Capital IQ identifier</span>
+                                <input type="text" class="text-field-sm" placeholder="e.g. IQ28754" />
+                            </div>
+                        </div>
+                        <div class="input-section">
+                            <span class="section-title">Valuation inputs</span>
+                            <div class="input-field">
+                                <span class="field-label">Valuation date</span>
+                                <input type="date" class="date-field" />
+                            </div>
+                            <div class="input-field">
+                                <span class="field-label">Explicit forecast period</span>
+                                <input type="number" class="number-field" min="2" max="10" placeholder="3" />
+                            </div>
+                            <div class="input-field">
+                                <span class="field-label">Financial year end</span>
+                                <input type="date" id="date-month-only" class="date-field" />
+                            </div>
+                            <div class="input-field">
+                                <span class="field-label">Forecasting model</span>
+                                <select class="select-field">
+                                    <option value="2">Two-period model</option>
+                                    <option value="3">Three-period model</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <script>
+            var year = 9999;
+            document.getElementById("date-month-only").setAttribute("min", year + "-01-01");
+            document.getElementById("date-month-only").setAttribute("max", year + "-12-31");
+        </script>
     </body>
 </html>
