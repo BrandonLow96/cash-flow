@@ -7,7 +7,10 @@ Automatically constructs a flexible and robust DCF model from any company listed
  - Flask
 
 ## Installation and Use
-No installation required. Simply launch `index.html`.
+You will need to launch the web application with Flask.
+ - Navigate to the root directory
+ - In terminal, type `flask run`.
+
 
 ## Product features
 Completed:
