@@ -1,5 +1,5 @@
 # Cash Flow
-Automatically constructs a flexible and robust DCF model from any company listed on Capital IQ. Requires a Capital IQ licence.
+Automatically constructs a flexible and robust DCF model from any company listed on Capital IQ. Requires a Capital IQ licence and the Capital IQ Excel plugin.
 
 ## Required Python packages
  - openpyxl
