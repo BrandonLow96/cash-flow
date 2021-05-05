@@ -1,6 +1,12 @@
+/* PARAMETERS */
+/* CONTAINERS */
 body {
   margin: 0px;
   padding: 0px;
+  -webkit-user-select: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .viewer {
@@ -12,7 +18,7 @@ body {
 .menubar {
   position: static;
   height: 68px;
-  background: #003763;
+  background: #1440aa;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -29,18 +35,6 @@ body {
   margin: 0px;
 }
 
-.sidebar {
-  order: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 258px;
-  height: calc(100vh - $menubar-height);
-  padding: 19px 19px 19px 19px;
-  background: #fafafa;
-}
-
 .page {
   order: 1;
   display: flex;
@@ -49,7 +43,7 @@ body {
   padding: 19px 19px 19px 19px;
   flex-grow: 3;
   overflow-y: scroll;
-  background: #e0e0e0;
+  background: #ffffff;
 }
 
 .block-header {
@@ -65,7 +59,12 @@ body {
   padding: 29px 40px 29px 40px;
   flex: 1;
   width: 100%;
-  background: #f1f1f1;
+  background: #fafafa;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 1;
+  margin: 0px 0px;
 }
 
 .input-section {
@@ -81,7 +80,15 @@ body {
   margin-top: 14px;
 }
 
-/* Text styles */
+.endnote-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 176px;
+  margin-top: 11px;
+}
+
+/* TEXT STYLES */
 .block-title {
   font-family: Roboto;
   font-weight: bold;
@@ -103,6 +110,14 @@ body {
   color: #000000;
 }
 
+.section-subtitle {
+  font-family: Roboto;
+  font-weight: 300;
+  font-size: 24px;
+  color: #939393;
+  margin-left: 6px;
+}
+
 .field-label {
   width: 176px;
   font-family: Roboto;
@@ -111,8 +126,23 @@ body {
   color: #000000;
 }
 
-/* Input fields */
-.number-field, .date-field, .text-field-sm, .text-field-lg {
+.endnote, .endnote-bold {
+  font-family: Roboto;
+  font-size: 12px;
+  color: #939393;
+  display: flex;
+}
+
+.endnote-bold {
+  font-weight: bold;
+}
+
+.endnote {
+  margin-left: 4px;
+}
+
+/* INPUT FIELDS */
+.select-field-lg, .select-field-sm, .number-field, .date-field, .text-field-sm, .text-field-lg {
   padding: 5px 0px 5px 10px;
   height: 26px;
   background: #e0e0e0;
@@ -131,9 +161,23 @@ body {
   width: 150px;
 }
 
+.date-field {
+  width: 150px;
+}
+
 .number-field {
   width: 60px;
   padding-right: 5px;
+}
+
+.select-field-sm {
+  padding-left: 3px;
+  width: 150px;
+}
+
+.select-field-lg {
+  padding-left: 3px;
+  width: 350px;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,220 @@
+// ##################################################################################
+/* PARAMETERS */
+$font: Roboto;
+$menubar-height: 68px;
+$sidebar-height: 258px;
+$field-label-width: 176px;
+$input-field-xl-width: 350px;
+$input-field-lg-width: 300px;
+$input-field-md-width: 225px;
+$input-field-sm-width: 150px;
+$input-field-xs-width: 60px;
+
+// ##################################################################################
+/* CONTAINERS */
+
+body {
+    margin: 0px;
+    padding: 0px;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.viewer {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.menubar {
+    position: static;
+    height: 68px;
+    background: #1440aa;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px 24px;
+}
+
+.content {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    height: calc(100% - $menubar-height);
+    margin: 0px;
+}
+
+// .sidebar {
+//     order: 0;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     align-items: flex-start;
+//     width: $sidebar-height;
+//     height: calc(100vh - $menubar-height);
+//     padding: 19px 19px 19px 19px;
+//     background: #f1f1f1;
+// }
+
+.page {
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 19px 19px 19px 19px;
+    flex-grow: 3;
+    overflow-y: scroll;
+    background: #ffffff;
+}
+
+.block-header {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 5px;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    padding: 29px 40px 29px 40px;
+    flex: 1;
+    width: 100%;
+    background: #fafafa;
+
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 1;
+    margin: 0px 0px;
+}
+
+.input-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 55px;
+}
+
+.input-field {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 14px;
+}
+
+.endnote-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: $field-label-width;
+    margin-top: 11px;
+}
+
+// ##################################################################################
+/* TEXT STYLES */
+.block-title {
+    font-family: $font;
+    font-weight: bold;
+    font-size: 14px;
+    color: #000000;
+}
+
+.block-subtitle {
+    font-family: $font;
+    font-size: 14px;
+    color: #000000;
+    margin-left: 4px;
+}
+
+.section-title {
+    font-family: $font;
+    font-weight: 300;
+    font-size: 24px;
+    color: #000000;
+}
+
+.section-subtitle {
+    font-family: $font;
+    font-weight: 300;
+    font-size: 24px;
+    color: #939393;
+    margin-left: 6px;
+}
+
+.field-label {
+    width: $field-label-width;
+    font-family: $font;
+    font-weight: bold;
+    font-size: 13px;
+    color: #000000;
+}
+
+%endnote {
+    font-family: $font;
+    font-size: 12px;
+    color: #939393;
+    display: flex;
+}
+
+.endnote-bold {
+    @extend %endnote;
+    font-weight: bold;
+}
+
+.endnote {
+    @extend %endnote;
+    margin-left: 4px;
+}
+
+// ##################################################################################
+/* INPUT FIELDS */
+%input-field {
+    padding: 5px 0px 5px 10px;
+    height: 26px;
+
+    background: #e0e0e0;
+    border: 0;
+    border-radius: 5px;
+
+    font-family: $font;
+    font-size: 13px;
+    color: #000000;
+}
+
+.text-field-lg {
+    @extend %input-field;
+    width: $input-field-lg-width;
+}
+
+.text-field-sm {
+    @extend %input-field;
+    width: $input-field-sm-width;
+}
+
+.date-field {
+    @extend %input-field;
+    width: $input-field-sm-width;
+}
+
+.number-field {
+    @extend %input-field;
+    width: $input-field-xs-width;
+    padding-right: 5px;
+}
+
+.select-field-sm {
+    @extend %input-field;
+    padding-left: 3px;
+    width: $input-field-sm-width;
+}
+
+.select-field-lg {
+    @extend %input-field;
+    padding-left: 3px;
+    width: $input-field-xl-width;
+}

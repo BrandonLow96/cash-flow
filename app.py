@@ -15,17 +15,23 @@ def index():
 def config():
     # POST request
     if request.method == 'POST':
-        data = {}
-        data['project_name'] = request.form.get("project-name")
-        data['company-name'] = request.form.get("company-name")
-        data['ciq_id'] = request.form.get("ciq-id")
-        data['val_date'] = request.form.get("val-date")
-        data['forecast_periods'] = request.form.get("forecast-periods")
-        data['forecasting_model'] = request.form.get("forecasting-model")
-        data['source_forecasts'] = request.form.get("source-forecasts")
-        return render_template("download.html", message=data)
+        data = {
+            "project_name": request.form.get("project-name"),
+            "project_name": request.form.get("project-name"),
+            "company-name": request.form.get("company-name"),
+            "ciq_id": request.form.get("ciq-id"),
+            "val_date": request.form.get("val-date"),
+            "forecast_periods": request.form.get("forecast-periods"),
+            "forecasting_model": request.form.get("forecasting-model"),
+            "source_forecasts": request.form.get("source-forecasts")
+        }
+        return render_template("download.html", data=data)
 
     # GET request
     else:
         # serialize and use JSON headers
         return render_template("index.html")
+
+
+if __name__ == "__main__":
+    app.run()

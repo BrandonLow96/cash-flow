@@ -16,64 +16,155 @@
         <div class="viewer">
             <div class="menubar">
                 <div class="img-wrap">
-                    <img src="../static/FTI-logo.png" alt="FTI Logo" width="38px" height="38px" />
+                    <img
+                        src="../static/open-source-finance-logo-alt.png"
+                        alt="Open Source Finance Logo"
+                        width="38px"
+                        height="38px"
+                    />
                 </div>
             </div>
 
             <div class="content">
-                <div class="sidebar">Side bar</div>
                 <div class="page">
                     <div class="block-header">
                         <span class="block-title">CONFIGURATION / </span>
                         <span class="block-subtitle">Specify model inputs and assumptions</span>
                     </div>
                     <div class="block">
-                        <div class="input-section">
-                            <span class="section-title">Company information</span>
-                            <div class="input-field">
-                                <span class="field-label">Project name</span>
-                                <input type="text" class="text-field-lg" placeholder="e.g. Project Alpha" />
+                        <form class="form" action="/configuration" method="post">
+                            <div class="input-section">
+                                <span class="section-title">General information</span>
+                                <div class="input-field">
+                                    <span class="field-label">Project name</span>
+                                    <input
+                                        type="text"
+                                        name="project-name"
+                                        class="text-field-lg"
+                                        placeholder="e.g. Project Alpha"
+                                        value="Test Company Name"
+                                        required
+                                    />
+                                </div>
+                                <div class="input-field">
+                                    <span class="field-label">Company name</span>
+                                    <input
+                                        type="text"
+                                        name="company-name"
+                                        class="text-field-lg"
+                                        placeholder="e.g. FTI Consulting"
+                                        value="Test Company Name"
+                                        required
+                                    />
+                                </div>
+                                <div class="input-field">
+                                    <span class="field-label">Capital IQ identifier</span>
+                                    <input
+                                        type="text"
+                                        name="ciq-id"
+                                        class="text-field-sm"
+                                        placeholder="e.g. IQ28754"
+                                        value="IQ00112233"
+                                        required
+                                    />
+                                </div>
+                                <div class="input-field">
+                                    <span class="field-label">Valuation date</span>
+                                    <input
+                                        type="date"
+                                        name="val-date"
+                                        class="date-field"
+                                        min="1900-01-01"
+                                        max="2100-12-31"
+                                        value="2021-05-05"
+                                        required
+                                    />
+                                </div>
                             </div>
-                            <div class="input-field">
-                                <span class="field-label">Company name</span>
-                                <input type="text" class="text-field-lg" placeholder="e.g. FTI Consulting" />
+                            <div class="input-section">
+                                <div class="block-header">
+                                    <span class="section-title">Financial data / </span>
+                                    <span class="section-subtitle">Historical</span>
+                                </div>
+                                <div class="input-field">
+                                    <span class="field-label">Explicit forecast period</span>
+                                    <input type="number name="forecast-periods" class="number-field" min="2" max="10"
+                                    placeholder="3" value="3"/>
+                                </div>
+                                <div class="input-field">
+                                    <span class="field-label">Financial year end</span>
+                                    <input
+                                        type="date"
+                                        id="financial-year-end"
+                                        name="financial-year-end"
+                                        class="date-field"
+                                        min="9999-01-01"
+                                        max="9999-12-31"
+                                        value="9999-12-31"
+                                        required
+                                    />
+                                </div>
+                                <div class="input-field">
+                                    <span class="field-label">Historical period start</span>
+                                    <input
+                                        type="date"
+                                        id="historical-period-start"
+                                        name="historical-period-start"
+                                        class="date-field"
+                                        value="2016-01-01"
+                                        required
+                                    />
+                                </div>
+                                <div class="input-field">
+                                    <span class="field-label">Historical period end</span>
+                                    <input
+                                        type="date"
+                                        id="historical-period-end"
+                                        name="historical-period-end"
+                                        class="date-field"
+                                        value="2018-12-31"
+                                        required
+                                    />
+                                </div>
+                                <div class="input-field">
+                                    <span class="field-label">Forecasting model</span>
+                                    <select class="select-field-sm" name="forecasting-model" required>
+                                        <option value="2" selected>Two-period model</option>
+                                        <option value="3">Three-period model</option>
+                                    </select>
+                                </div>
+                                <div class="endnote-wrapper">
+                                    <span class="block-header">
+                                        <span class="endnote-bold">Two-period:</span>
+                                        <span class="endnote"
+                                            >explicit forecast period followed by terminal period (stable growth)</span
+                                        >
+                                    </span>
+                                    <span class="block-header">
+                                        <span class="endnote-bold">Three-period:</span>
+                                        <span class="endnote"
+                                            >explicit forecast period followed by transition period, during which growth
+                                            tapers down to stable growth in terminal period.</span
+                                        >
+                                    </span>
+                                </div>
+                                <div class="input-field">
+                                    <span class="field-label">Source of forecasts</span>
+                                    <select class="select-field-lg" name="source-forecasts" required>
+                                        <option value="1" selected>
+                                            Use Capital IQ consensus forecasts where available
+                                        </option>
+                                        <option value="2">Specify own forecasts</option>
+                                    </select>
+                                </div>
                             </div>
-                            <div class="input-field">
-                                <span class="field-label">Capital IQ identifier</span>
-                                <input type="text" class="text-field-sm" placeholder="e.g. IQ28754" />
-                            </div>
-                        </div>
-                        <div class="input-section">
-                            <span class="section-title">Valuation inputs</span>
-                            <div class="input-field">
-                                <span class="field-label">Valuation date</span>
-                                <input type="date" class="date-field" />
-                            </div>
-                            <div class="input-field">
-                                <span class="field-label">Explicit forecast period</span>
-                                <input type="number" class="number-field" min="2" max="10" placeholder="3" />
-                            </div>
-                            <div class="input-field">
-                                <span class="field-label">Financial year end</span>
-                                <input type="date" id="date-month-only" class="date-field" />
-                            </div>
-                            <div class="input-field">
-                                <span class="field-label">Forecasting model</span>
-                                <select class="select-field">
-                                    <option value="2">Two-period model</option>
-                                    <option value="3">Three-period model</option>
-                                </select>
-                            </div>
-                        </div>
+
+                            <button type="submit" name="submit" value="submit">Save</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
-
-        <script>
-            var year = 9999;
-            document.getElementById("date-month-only").setAttribute("min", year + "-01-01");
-            document.getElementById("date-month-only").setAttribute("max", year + "-12-31");
-        </script>
+        <script src="../static/javascript.js"></script>
     </body>
 </html>
