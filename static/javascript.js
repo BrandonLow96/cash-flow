@@ -16,6 +16,23 @@ var year = 9999;
 document.getElementById("financial-year-end").setAttribute("min", year + "-01-01");
 document.getElementById("financial-year-end").setAttribute("max", year + "-12-31");
 
+// Show flash messages and hide everything on submit.
+function onSubmit() {
+    $("#form").hide();
+    $("#flash").show();
+};
+
+// Update flash messages
+var source = new EventSource("{{ url_for('sse.stream') }}");
+    source.addEventListener('publish', function(event) {
+        var data = JSON.parse(event.data);
+        console.log("The server says " + data.message);
+    }, false);
+    source.addEventListener('error', function(event) {
+        console.log("Error"+ event)
+        alert("Failed to connect to event stream. Is Redis running?");
+    }, false);
+
 // Copy financial year-end date and month to historical period start / end
 document.getElementById("financial-year-end").onchange = function () {
     var date = new Date(this.value);

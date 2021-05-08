@@ -115,6 +115,11 @@ body {
     margin-top: 11px;
 }
 
+// Hide flash messages when page loads.
+#flash {
+    display: none;
+}
+
 // ##################################################################################
 /* TEXT STYLES */
 .block-title {

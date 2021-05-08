@@ -5,6 +5,7 @@ Automatically constructs a flexible and robust DCF model from any company listed
  - Python 3.x
  - xlwings
  - Flask
+ - json
 
 ## Installation and Use
 No installation is required beyond Python and the packages indicated above.

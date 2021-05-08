@@ -26,7 +26,7 @@
             </div>
 
             <div class="content">
-                <div class="page">
+                <div class="page" id="form">
                     <div class="block-header">
                         <span class="block-title">CONFIGURATION / </span>
                         <span class="block-subtitle">Specify model inputs and assumptions</span>
@@ -159,8 +159,17 @@
                                 </div>
                             </div>
 
-                            <button type="submit" name="submit" value="submit">Save</button>
+                            <button type="submit" name="submit" value="submit" onclick="onSubmit();">Save</button>
                         </form>
+                    </div>
+                </div>
+                <div class="page" id="flash">
+                    <div class="block-header">
+                        <span class="block-title">PREPARATION / </span>
+                        <span class="block-subtitle">Building DCF model</span>
+                    </div>
+                    <div class="block" id="flash-text">
+                        <h1>Flash</h1>
                     </div>
                 </div>
             </div>
