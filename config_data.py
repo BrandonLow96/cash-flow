@@ -3,8 +3,8 @@ from datetime import datetime
 
 data = {
     "project_name": "Project Open Source",
-    "company_name": "FTI Consulting",
-    "ciq_id": "NYSE:FCN",
+    "company_name": "VISA",
+    "ciq_id": "NYSE:V",
 
     "val_date": datetime(2017, 12, 18),
     "g": 0.02,
@@ -35,8 +35,7 @@ data = {
     "index": "MSCI World",
     "index_id": "IQ2668622",
 
-    "comps": ["IQ22615883", "IQ7827924", "IQ24947391", "IQ7685249", "IQ217503",
-                    "IQ117027181", "IQ882187", "IQ216463", "IQ879091", "IQ8690249"],
+    "comps": ["IQ6477196", "IQ92001"],
 
     # Structural parameters
     "hist_periods": 3,  # minimum of 2
