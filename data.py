@@ -39,7 +39,10 @@ def get_data(ticker, function, data1=None, period=None, data2=None):
 def get_data_at_date(ticker, function, data1=None, data2=None, date=None):
 
     # work out the quarter ending on or before the date
-    # if quarter is Q3, take prior year Q4 statements +
+    # if quarter is Q1, take prior full year, less prior Q1, plus current Q1
+    # if quarter is Q2, take prior full year, less prior Q1 and Q2, plus current Q1 and Q2
+    # if quarter is Q3, take prior year Q4 statement, current full year, less current q4
+    # if quarter is Q4, take current full year
 
     return None
 
