@@ -1,5 +1,4 @@
 from flask import Flask, jsonify, request, render_template, redirect, url_for, flash
-from flask_sse import sse
 import json
 import config_data as cfd
 from xlwings.constants import InsertShiftDirection
