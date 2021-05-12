@@ -2,6 +2,7 @@ from xlwings.constants import InsertShiftDirection
 import xlwings as xw
 from datetime import date
 import config_data as cfd
+import os
 
 # Define functions
 
@@ -11,10 +12,16 @@ def update_col(sheet, col_src, col_dest, cols, cols_limit):
         sheet.range(col_src + ":" + col_src).delete(shift="left")
     else:
         for i in range(1, cols - cols_limit):
+
+            # Insert Columns
             sheet.range(col_dest + ":" + col_dest).insert(shift="right",
                                                           copy_origin="format_from_left_or_above")
+
+            # Copies formula from old column to new column
             sheet.range(
                 col_src + ":" + col_dest).formula = sheet.range(col_src + ":" + col_src).formula
+
+            # Copies and paste formats from old column to new column
             sheet.range(col_src + ":" + col_src).copy()
             sheet.range(col_dest + ":" + col_dest).paste("formats")
 
@@ -36,14 +43,19 @@ def main(data):
                     'forecast_start', 'use_ciq_forecast', 'r_override', 'rf', 'erp', 'pre_tax_rd',
                     'debt_ratio', 'gearing_measure', 'beta_freq', 'index', 'index_id']
 
-    # Initialise workbook
-    xw.App().visible = False
+    
+
+    # Sets the excel to visible or not. Default is not visible
+    # xw.App().visible = False
 
     if data["forecasting_model"] == 2:
-        model_template = 'templates\dcf_model_2p_blank.xlsx'
+        model_template = os.path.join(
+            os.getcwd(), 'templates\dcf_model_2p_blank.xlsx')
     else:
-        model_template = 'templates\dcf_model_3p_blank.xlsx'
+        model_template = os.path.join(
+            os.getcwd(), 'templates\dcf_model_3p_blank.xlsx')
 
+    # Initialise workbook
     wb = xw.Book(model_template)
     asm_sht = wb.sheets['Assumptions']
     dcf_sht = wb.sheets['DCF']
@@ -56,10 +68,11 @@ def main(data):
 
     print("Initialised workbook...")
 
-    # Copy title and assumptions
+    # Copy assumptions in config_data.py to assumptions sheet in excel
     for name in named_ranges:
         asm_sht.range(name).value = data[name]
 
+    # Copy title to all sheets
     for sheet in wb.sheets:
         sheet.range('B4').value = data["project_name"]
         sheet.range('B5').value = "Valuation of " + data["company_name"]
@@ -85,16 +98,20 @@ def main(data):
 
     print("Configured data input sheets...")
 
+    # Insert rows corresponding to the number of comparable companies to row 60 of the Beta sheet in the template
     update_comps(beta_sht, 60, len(data["comps"]))
 
+    # Insert the CAPIQ identifier of comparable companies (from config_data.py) to row 60 of the Beta sheet in the template
     for i in range(0, len(data["comps"])):
         row_num = 60 + i
         beta_sht.range("C" + str(row_num)).value = data["comps"][i]
 
+    # Insert rows corresponding to the number of comparable companies to row 21 of the Beta sheet in the template
     update_comps(beta_sht, 21, len(data["comps"]))
     beta_sht.range(str(21 + len(data["comps"])) + ":" +
                    str(21 + len(data["comps"]))).api.Delete()
 
+    # Insert rows and copy formula down, the "+2 * (len(data["comps"]) compensates for the additional rows added previously
     update_comps(beta_sht, 97 + 2 *
                  (len(data["comps"]) - 1), len(data["comps"]))
     update_comps(beta_sht, 72 + 2 *
@@ -104,8 +121,10 @@ def main(data):
 
     print("Configured beta...")
 
+    # Insert rows corresponding to the number of comparable companies to row 39 of the Comps sheet in the template
     update_comps(comp_sht, 39, len(data["comps"]))
 
+    # Insert the CAPIQ identifier of comparable companies (from config_data.py) to row 39 of the Comps sheet in the template
     for i in range(0, len(data["comps"])):
         row_num = 39 + i
         comp_sht.range("C" + str(row_num)).value = data["comps"][i]
